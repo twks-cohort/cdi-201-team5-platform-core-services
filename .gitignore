@@ -13,3 +13,4 @@ sloth/*.yaml
 .DS_Store
 kubeconfig
 prometheus/auth
+.idea
