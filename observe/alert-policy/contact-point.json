@@ -1,9 +1,9 @@
 {
-    "uid": "cohort-team##-201-contact",
-    "name": "Cohort Team##-201",
+    "uid": "cohort-team5-201-contact",
+    "name": "Cohort Team5-201",
     "type": "email",
     "settings": {
-        "addresses": "email1@myteam.com; email2@myteam.com",
+        "addresses": "jeremy.huiskamp@thoughtworks.com; amit.dube@thoughtworks.com; gstupper@thoughtworks.com",
         "singleEmail": false
     },
     "disableResolveMessage": false
