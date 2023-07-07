@@ -14,10 +14,10 @@
   "execErrState": "Error",
   "for": "5m",
   "dashboardUid": "pe-cluster-monitoring",
-  "panelId": 3,
+  "panelId": 7,
   "annotations": {
     "__dashboardUid__": "pe-cluster-monitoring",
-    "__panelId__": "3"
+    "__panelId__": "7"
   },
   "data": [
     {
