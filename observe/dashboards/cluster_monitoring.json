@@ -596,6 +596,101 @@
         "type": "timeseries"
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "pe-prometheus-datasource"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 28
+        },
+        "id": 10,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "right",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "pe-prometheus-datasource"
+            },
+            "editorMode": "code",
+            "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"idle\"}[5m])) * 100)",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Kubernetes Instance Node CPU Utilization (Average by Instance)",
+        "type": "timeseries"
+      },
+      {
         "aliasColors": {},
         "bars": false,
         "dashLength": 10,
@@ -616,7 +711,7 @@
           "h": 8,
           "w": 24,
           "x": 0,
-          "y": 28
+          "y": 36
         },
         "hiddenSeries": false,
         "id": 8,
@@ -638,7 +733,7 @@
           "alertThreshold": true
         },
         "percentage": false,
-        "pluginVersion": "10.0.3-cloud.1.14737d80",
+        "pluginVersion": "10.0.3-cloud.2.14737d80",
         "pointradius": 2,
         "points": false,
         "renderer": "flot",
@@ -674,7 +769,7 @@
         ],
         "thresholds": [],
         "timeRegions": [],
-        "title": "CPU utilization per instance [avg %]",
+        "title": "CloudWatch: CPU utilization per instance [avg %]",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -726,7 +821,7 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 36
+          "y": 44
         },
         "hiddenSeries": false,
         "id": 9,
@@ -748,7 +843,7 @@
           "alertThreshold": true
         },
         "percentage": false,
-        "pluginVersion": "10.0.3-cloud.1.14737d80",
+        "pluginVersion": "10.0.3-cloud.2.14737d80",
         "pointradius": 2,
         "points": false,
         "renderer": "flot",
@@ -833,7 +928,7 @@
     "timezone": "",
     "title": "Cohort platform-core-services Alerts",
     "uid": "pe-cluster-monitoring",
-    "version": 8,
+    "version": 15,
     "weekStart": ""
   },
   "folderUid": "pe-folder",
