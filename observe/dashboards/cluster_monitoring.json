@@ -687,7 +687,7 @@
             "refId": "A"
           }
         ],
-        "title": "Kubernetes Instance Node CPU Utilization (Average by Instance)",
+        "title": "Kubernetes Instance Node CPU Utilization [avg %]",
         "type": "timeseries"
       },
       {
@@ -801,6 +801,99 @@
         }
       },
       {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "pe-prometheus-datasource"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 44
+        },
+        "id": 11,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "right",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "pe-prometheus-datasource"
+            },
+            "editorMode": "builder",
+            "expr": "instance:node_network_receive_bytes_excluding_lo:rate5m",
+            "legendFormat": "{{instance}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Kubernetes Instance Node Received Network Bytes [bytes/sec?]",
+        "type": "timeseries"
+      },
+      {
         "aliasColors": {},
         "bars": false,
         "dashLength": 10,
@@ -819,9 +912,9 @@
         "fillGradient": 0,
         "gridPos": {
           "h": 9,
-          "w": 12,
+          "w": 24,
           "x": 0,
-          "y": 44
+          "y": 52
         },
         "hiddenSeries": false,
         "id": 9,
@@ -880,7 +973,7 @@
         ],
         "thresholds": [],
         "timeRegions": [],
-        "title": "Inbound network traffic per instance [bytes/sec]",
+        "title": "CloudWatch: Inbound network traffic per instance [bytes/sec]",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -928,7 +1021,7 @@
     "timezone": "",
     "title": "Cohort platform-core-services Alerts",
     "uid": "pe-cluster-monitoring",
-    "version": 15,
+    "version": 22,
     "weekStart": ""
   },
   "folderUid": "pe-folder",
