@@ -19,3 +19,9 @@ resource "grafana_data_source" "prometheus" {
     basicAuthPassword = var.prometheus_password
   })
 }
+
+resource "grafana_cloud_plugin_installation" "github_plugin" {
+  stack_slug = "team5201stack"
+  slug       = "grafana-github-datasource"
+  version    = "1.4.6"
+}
