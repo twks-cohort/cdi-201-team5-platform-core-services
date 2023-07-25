@@ -1,7 +1,7 @@
 provider "grafana" {
-  url  = var.stack_url
-  auth = var.stack_management_token
-  cloud_api_key = var.stack_management_token
+  url           = var.stack_url
+  auth          = var.stack_management_token
+  cloud_api_key = var.grafana_cloud_api_key
 }
 
 resource "grafana_data_source" "prometheus" {
