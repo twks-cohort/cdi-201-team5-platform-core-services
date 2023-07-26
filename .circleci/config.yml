@@ -240,7 +240,7 @@ workflows:
           filters: *on-push-main
 
       - terraform/apply:
-          name: Create Grafana Prometheus Datasource
+          name: Create Grafana Datasources
           context: << pipeline.parameters.context >>
           shell: op run --env-file op.env -- /bin/bash -eo pipefail
           workspace: prod
@@ -259,7 +259,7 @@ workflows:
           shell: op run --env-file op.env -- /bin/bash -eo pipefail
           source-env: op.env
           requires:
-            - Create Grafana Prometheus Datasource
+            - Create Grafana Datasources
           filters: *on-push-main
 
       - update-alerts:
