@@ -28,7 +28,7 @@ resource "grafana_cloud_plugin_installation" "github_plugin" {
 }
 
 resource "grafana_data_source" "github" {
-  type = "github"
+  type = "grafana-github-datasource"
   name = "cohort-github"
 
   json_data_encoded = jsonencode({
