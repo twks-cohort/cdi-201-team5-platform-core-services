@@ -60,6 +60,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -219,6 +220,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -319,6 +321,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -419,6 +422,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -519,6 +523,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -619,6 +624,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -733,7 +739,7 @@
           "alertThreshold": true
         },
         "percentage": false,
-        "pluginVersion": "10.0.3-cloud.2.14737d80",
+        "pluginVersion": "10.1.0-cloud.2.d8692117",
         "pointradius": 2,
         "points": false,
         "renderer": "flot",
@@ -824,6 +830,7 @@
                 "tooltip": false,
                 "viz": false
               },
+              "insertNulls": false,
               "lineInterpolation": "linear",
               "lineWidth": 1,
               "pointSize": 5,
@@ -936,7 +943,7 @@
           "alertThreshold": true
         },
         "percentage": false,
-        "pluginVersion": "10.0.3-cloud.2.14737d80",
+        "pluginVersion": "10.1.0-cloud.2.d8692117",
         "pointradius": 2,
         "points": false,
         "renderer": "flot",
@@ -1001,6 +1008,162 @@
         "yaxis": {
           "align": false
         }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Mixed --"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "links": [],
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 61
+        },
+        "hiddenSeries": false,
+        "id": 12,
+        "legend": {
+          "alignAsTable": false,
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "10.1.0-cloud.2.d8692117",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "grafanacloud-logs"
+            },
+            "editorMode": "code",
+            "expr": "avg(bytes_rate({app=~\"tns-cloud\"}[1s]))",
+            "hide": false,
+            "queryType": "range",
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-usage"
+            },
+            "disableTextWrap": false,
+            "editorMode": "builder",
+            "expr": "grafanacloud_logs_instance_bytes_received_per_second",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B",
+            "useBackend": false
+          }
+        ],
+        "thresholds": [],
+        "timeRegions": [],
+        "title": "TNS Logs As % of Total",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "transformations": [
+          {
+            "id": "joinByField",
+            "options": {}
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "ratio",
+              "binary": {
+                "left": "{}",
+                "operator": "/",
+                "reducer": "sum",
+                "right": "{__name__=\"grafanacloud_logs_instance_bytes_received_per_second\", cluster=\"prod-us-central-5\", id=\"635098\", org_id=\"888779\", retention_hours=\"840\"}"
+              },
+              "mode": "binary",
+              "reduce": {
+                "include": [
+                  "{}",
+                  "{__name__=\"grafanacloud_logs_instance_bytes_received_per_second\", cluster=\"prod-us-central-5\", id=\"635098\", org_id=\"888779\", retention_hours=\"840\"}"
+                ],
+                "reducer": "stdDev"
+              },
+              "replaceFields": true
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "percentage",
+              "binary": {
+                "left": "100",
+                "operator": "*",
+                "reducer": "sum",
+                "right": "ratio"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": true
+            }
+          }
+        ],
+        "type": "graph",
+        "xaxis": {
+          "mode": "time",
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "percent",
+            "logBase": 1,
+            "min": "0",
+            "show": true
+          },
+          {
+            "format": "short",
+            "logBase": 1,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false
+        }
       }
     ],
     "refresh": "",
@@ -1021,7 +1184,7 @@
     "timezone": "",
     "title": "Cohort platform-core-services Alerts",
     "uid": "pe-cluster-monitoring",
-    "version": 22,
+    "version": 32,
     "weekStart": ""
   },
   "folderUid": "pe-folder",
